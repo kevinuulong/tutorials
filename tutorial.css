@@ -1,8 +1,12 @@
 body, html{
     margin: 0px;
     background-image: linear-gradient(to right, rgb(0, 0, 179), rgb(94, 255, 94), rgb(119, 255, 119));
-    padding: 10px;
     color: #001744;
+    width: 100vmax;
+}
+
+body{
+    padding: 10px;
 }
 
 #heading{

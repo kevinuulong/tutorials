@@ -20,7 +20,7 @@ body{
 #headerimg{
     width: 131px;
     position: relative;
-    transform: translateX(180%);
+    transform: translateX(200%);
 }
 
 #intro{

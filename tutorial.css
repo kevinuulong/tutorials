@@ -2,7 +2,6 @@ body, html{
     margin: 0px;
     background-image: linear-gradient(to right, rgb(0, 0, 179), rgb(94, 255, 94), rgb(119, 255, 119));
     color: #001744;
-    width: 100vmax;
     overflow-x: hidden;
 }
 
@@ -20,6 +19,11 @@ h2{
 
 p{
     font-size: 3vmin;
+}
+
+canvas{
+    width: 500px;
+    margin-left: 40px;
 }
 
 #heading{
@@ -102,3 +106,35 @@ a:link, a:visited{
     background-position: 0 95%;
     color: #001744;
 }
+
+@media only screen and (max-width: 600px) {
+    
+    #heading{
+        width: 350px;
+    }
+    #headerimg{
+        transform: translateX(120px);
+        -webkit-transform: translateX(120px);
+    }
+    
+    #intro{
+        width: 300px;
+    }
+    canvas{
+        width: 300px;
+        margin-left: 0px;
+    }
+    .step{
+        width: 300px;
+    #contact{
+        width: 350px;
+    }
+    table{
+        width: 300px;
+    } 
+    
+    #btn, #btn:link{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+  }

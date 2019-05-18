@@ -1,6 +1,6 @@
 body, html{
     margin: 0px;
-    background-image: linear-gradient(to right, rgb(0, 0, 179), rgb(94, 255, 94), rgb(119, 255, 119));
+    background-image: linear-gradient(to right, #15dbff, #6aff90);
     color: #001744;
     overflow-x: hidden;
 }

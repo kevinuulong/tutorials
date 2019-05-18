@@ -1,0 +1,86 @@
+body, html{
+    margin: 0px;
+    background-image: linear-gradient(to right, rgb(0, 0, 179), rgb(94, 255, 94), rgb(119, 255, 119));
+    padding: 10px;
+    color: #001744;
+}
+
+#heading{
+    width: 650px;
+    height: 131px;
+    background-color: white;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 25px;
+}
+#headerimg{
+    width: 131px;
+    position: relative;
+    transform: translateX(175%);
+}
+
+#intro{
+    width: 600px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 25px;
+    position: relative;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.step{
+    width: 600px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 25px;
+    position: relative;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#contact{
+    width: 650px;
+    background-color: white;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+#contactimg{
+    width: 131px;
+}
+table{
+    width: 600px;
+}
+th{
+    width: 50%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#cimagewrapper{
+    text-align: right;
+}
+
+#cinfowrapper{
+    text-align: left;
+}
+
+#btn, #btn:link{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    background: #5284ff;
+}
+a:link, a:visited{
+    text-decoration: none;
+    background: linear-gradient(to right, #15dbff, #6aff90);
+    background-repeat: repeat-x;
+    background-size: 100% 2px;
+    background-position: 0 95%;
+    color: #001744;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="tutorial.css">
+    <title>Plusses Fractal Tutorial</title>
+</head>
+<body>
+    <div id="heading">
+        <img id="headerimg" src="https://kevinuulong.com/images/KLlogocolredcircle.png">
+    </div>
+    <br>
+    <div id="intro">
+    <h1>Plusses Fractal Tutorial in HTML using &lt;canvas&gt;</h1>
+    <p>In this tutorial I will explain how to make the plus fractal you see below using HTML and Javascript.</p>
+    <canvas id="canvas" width="500px" height="500px" style="margin-left: 40px; border:1px solid #00ff00;background-color:black;"></canvas>
+    <script>
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            ctx.strokeStyle = "#00ff00";
+
+            function drawline(x,y,xt,yt,ctx){
+                ctx.beginPath();
+                ctx.moveTo(x,y);
+                ctx.lineTo(xt,yt);
+                ctx.stroke();
+            }
+            //drawplus(100,250,250,ctx);
+
+            function drawplus(r,x,y,ctx){
+                drawline(x,y-(r/2),x,y+(r/2),ctx);
+                drawline(x-(r/2),y,x+(r/2),y,ctx);
+            }
+            
+            drawplusplus(250,250,250,4,ctx);
+
+            function drawplusplus(x,y,r,num,ctx){
+                if (num>0){
+                drawplus(r,x,y,ctx);
+                drawplusplus(x+(r/2),y,r/2,num-1,ctx);
+                drawplusplus(x-(r/2),y,r/2,num-1,ctx);
+                drawplusplus(x,y-(r/2),r/2,num-1,ctx);
+                drawplusplus(x,y+(r/2),r/2,num-1,ctx);
+                }
+            }
+        </script>
+        </div>
+        <br>
+        <div class="step">
+        <h2>Step One: Creating a canvas</h2>
+
+        <p>We first need to create a canvas element. Inside the body of your HTML file you want to add the &lt;canvas&gt; tag. I have set the ID of this canvas to canvas and made the width and height each 500px. I also added some basic styling to give it a cool look.</p>
+        <script src="https://gist.github.com/kevinuulong/7c712f9bf34cccb6f651d4aa71c58c2b.js"></script>
+        <p>At this point we should have something that looks like this:</p>
+        <canvas id="canvas2" width="500px" height="500px" style="margin-left: 40px; border: 1px solid #00ff00; background-color: black;"></canvas>
+        </div>
+        <br>
+        <div class="step">
+        <h2>Step Two: Accessing the canvas</h2>
+        <p>Now that we have a canvas we need to be able to access it. This is where we use Javascript. For this you can use an external Javascript file, but for the purposes of this tutorial I will be using the inline &lt;script&gt; tags. Inside the &lt;script&gt; tags you want to include a variable to define your canvas by. In this case we will use the letter <i>c</i>. We then need to use the variable to get the context of our canvas which I will define as <i>ctx</i>. We can then test out our new <i>ctx</i> variable by setting the stroke color to green. We will not see anything new yet, but as long as you don't get an error in the console it means your canvas is all set up and ready to start drawing on.</i></p>
+        <script src="https://gist.github.com/kevinuulong/323237394aa65bfe481f738f0690bced.js"></script>
+        </div>
+        <br>
+        <div class="step">
+        <h2>Step Three: Drawing a line</h2>
+        <p>Now that we can access our canvas it is time to start drawing on it. This is where we get to write our first function. We need to write a function that will draw a line from one point to the next or from (<i>x</i>,<i>y</i>) (<i>xt</i>,<i>yt</i>). We will use these as the parameters in our <i>drawline()</i> function as well as a parameter requiring the context for the canvas we are using. We need to first tell our canvas that we want to start drawing, then tell it where to start. In this case we want our line to start at (<i>x</i>,<i>y</i>) so we set those as the parameters. We then need to tell our canvas what we want it to draw. For that we use the <i>lineTo()</i> function. We want our line to go to the second set of coordinates we asked for when defining the function so set (<i>xt</i>,<i>yt</i>) as our parameters. We then need to tell our canvas that we want it to draw a stroke so use the <i>stroke()</i> function. We then want to test out our new function so feed it some parameters and see what the output is. It should draw a simple line from the first point to the second point like below. <b>(REMEMBER: (0,0) is the top left corner of the canvas element.)</b></p>
+        <script src="https://gist.github.com/kevinuulong/2823b4a4fa4b1b8b47c263562f9e991e.js"></script>
+
+        <canvas id="canvas3" width="500px" height="500px" style="margin-left: 40px; border:1px solid #00ff00;background-color:black;"></canvas>
+            <script>
+                var c = document.getElementById("canvas3");
+                var ctx = c.getContext("2d");
+                ctx.strokeStyle = "#00ff00";
+
+                function drawline(x,y,xt,yt,ctx){
+                    ctx.beginPath();
+                    ctx.moveTo(x,y);
+                    ctx.lineTo(xt,yt);
+                    ctx.stroke();
+                }
+
+                drawline(200,250,300,250,ctx);
+            </script>
+        </div>
+        <br>
+        <div class="step">
+        <h2>Step Four: Drawing a plus</h2>
+        <p>Now that we have a function that draws a line, we can use that to draw a plus shape. We want to define a function that takes 4 parameters. I will call this function <i>drawplus()</i> and it should take a radius, <i>r</i>, an x-coordinate <i>x</i>, a y-coordinate <i>y</i>, and the context for the canvas we are using, <i>ctx</i>. We then need to use our <i>drawline()</i> function to draw two lines, one horizontal and one vertical. If we want our x and y-coordinates to be at the center of our plus we are going to need to start and end our lines forming the plus half of the radius away from the point; therefore, we need to take our <i>x</i> and <i>y</i> variables and subtract and add half of the radius, <i>r</i>. To draw a horizontal line we need to do this to the x-coordinate and to draw a vertical line we need to do this to the y-coordinate. When we are done we need to call our <i>drawplus()</i> function to test it out. It should look something like the example below.</p>
+        <script src="https://gist.github.com/kevinuulong/bfde9fc07122255a7dbaeeb4324cee23.js"></script>
+        <canvas id="canvas4" width="500px" height="500px" style="margin-left: 40px; border:1px solid #00ff00;background-color:black;"></canvas>
+        <script>
+            var c = document.getElementById("canvas4");
+            var ctx = c.getContext("2d");
+            ctx.strokeStyle = "#00ff00";
+
+            function drawline(x,y,xt,yt,ctx){
+                ctx.beginPath();
+                ctx.moveTo(x,y);
+                ctx.lineTo(xt,yt);
+                ctx.stroke();
+            }
+            drawplus(100,250,250,ctx);
+
+            function drawplus(r,x,y,ctx){
+                drawline(x,y-(r/2),x,y+(r/2),ctx);
+                drawline(x-(r/2),y,x+(r/2),y,ctx);
+                }
+        </script>
+        </div>
+        <br>
+        <div class="step">
+        <h2>Step Five: Drawing multiple plusses</h2>
+        <p>Now that we have a function that draws a plus we can start working on drawing multiple plusses. To do this we are going to want to write a new function called <i>drawplusfractal()</i> This function should accept 5 parameters, an x-coordinate <i>x</i>, a y-coordinate <i>y</i>, a radius, <i>r</i>, a number of times we wish to repeat the plus, <i>num</i>, and the context for the canvas we are using, <i>ctx</i>. We then want to craete an <i>if</i> statement that checks if <i>num&gt;0</i>. Inside the <i>if</i> statement we want to first draw a plus using our <i>drawplus()</i> function and the parameters of our current <i>drawplusfractal()</i> function. Then we want to call the <i>drawplusfractal()</i> function 4 times using slightly modified parameters each time. Before I explain the parameters I want to talk about what we just did. We used something that in Computer Science is called recursion. Recursion occurs when you call a function from inside that same function. Recursion can be very useful, but also <b>VERY</b> dangerous if not controlled properly. The parameters we want to use inside our function should be the x-coordinste of our current plus + and - half of the radius. The same should be done for the y-coordinate. This positions the next plus drawn at the very end of our current plus. Make sure that you also take the current <i>num</i> and subtract 1 from it each time so that you don't end up with an endlessly recurring function. When you are done try calling your <i>drawplusfractal()</i> function. To get the same result as at the beginning of this tutorial use 4 as the number of recursions. It should now look something like the example below.</p>
+        <script src="https://gist.github.com/kevinuulong/21456ece5d0fd4445f3c6c91cf2f8470.js"></script>
+        <canvas id="canvas5" width="500px" height="500px" style="margin-left: 40px; border:1px solid #00ff00;background-color:black;"></canvas>
+        <script>
+            var c = document.getElementById("canvas5");
+            var ctx = c.getContext("2d");
+            ctx.strokeStyle = "#00ff00";
+
+            function drawline(x,y,xt,yt,ctx){
+                ctx.beginPath();
+                ctx.moveTo(x,y);
+                ctx.lineTo(xt,yt);
+                ctx.stroke();
+            }
+            //drawplus(100,250,250,ctx);
+
+            function drawplus(r,x,y,ctx){
+                drawline(x,y-(r/2),x,y+(r/2),ctx);
+                drawline(x-(r/2),y,x+(r/2),y,ctx);
+            }
+            
+            drawplusplus(250,250,250,4,ctx);
+
+            function drawplusplus(x,y,r,num,ctx){
+                if (num>0){
+                drawplus(r,x,y,ctx);
+                drawplusplus(x+(r/2),y,r/2,num-1,ctx);
+                drawplusplus(x-(r/2),y,r/2,num-1,ctx);
+                drawplusplus(x,y-(r/2),r/2,num-1,ctx);
+                drawplusplus(x,y+(r/2),r/2,num-1,ctx);
+                }
+            }
+        </script>
+        </div>
+        <br>
+
+        <div id="contact">
+            <table>
+                <th id="cimagewrapper"> <img id="contactimg" src="https://kevinuulong.com/images/KLlogocolredcircle.png"></th>
+                <th id="cinfowrapper">&nbsp;&nbsp;<a href="https://kevinuulong.com">kevinuulong.com</a><br><br><a id="btn" href="mailto:eld-longkw@elderhs.net">Contact Me</a></th>
+            </table>
+        </div>
+
+</body>
+</html>

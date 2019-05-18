@@ -3,10 +3,23 @@ body, html{
     background-image: linear-gradient(to right, rgb(0, 0, 179), rgb(94, 255, 94), rgb(119, 255, 119));
     color: #001744;
     width: 100vmax;
+    overflow-x: hidden;
 }
 
 body{
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h1{
+    font-size: 6vmin;
+}
+h2{
+    font-size: 5.5vmin;
+}
+
+p{
+    font-size: 3vmin;
 }
 
 #heading{
@@ -21,6 +34,7 @@ body{
     width: 131px;
     position: relative;
     transform: translateX(200%);
+    -webkit-transform: translateX(200%);
 }
 
 #intro{

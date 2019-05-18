@@ -59,6 +59,7 @@ canvas{
     position: relative;
     margin: auto;
     font-family: 'Montserrat', sans-serif;
+    padding-bottom: 50px;
 }
 
 #contact{

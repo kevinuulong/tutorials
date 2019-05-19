@@ -37,8 +37,8 @@ canvas{
 #headerimg{
     width: 131px;
     position: relative;
-    transform: translateX(200%);
-    -webkit-transform: translateX(200%);
+    transform: translateX(190%);
+    -webkit-transform: translateX(190%);
 }
 
 #intro{
